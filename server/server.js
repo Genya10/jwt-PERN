@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const Fingerprint = require("express-fingerprint");
-const AuthRootRouter = require("./routers/Auth.js");
+const AuthRootRouter = require("./routers/AuthRouter.js");
 const cookieParser = require("cookie-parser");
 
 dotenv.config();
