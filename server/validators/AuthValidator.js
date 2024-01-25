@@ -1,4 +1,4 @@
-import ValidateRequest from "../utils/ValidateRequest";
+const ValidateRequest = require("../utils/ValidateRequest"); ;
 const yup = require("yup");
 
  const signInSchema = yup.object({
