@@ -6,6 +6,6 @@ const pool = new Pool({
     host:"",
     port:"",
     database:"",
-})
+});
 
 module.exports = pool;

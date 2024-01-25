@@ -1,4 +1,6 @@
-const { ErrorUtils } = require("../utils/Errors") ;
+const { ErrorUtils } = require("../utils/Errors");
+const AuthService = require("../services/AuthService");
+const {COOKIE_SETTINGS} = require("../constants.js");
 
 class AuthController {
    static async signIn(req,res){
