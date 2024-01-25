@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import style from "./pages.module.scss";
+import Button from "../components/Button"
 
 export function Demo(){
     const {data,handleFetch,handleLogOut}= useContext(AuthContext);
@@ -8,8 +9,8 @@ export function Demo(){
     return (
         <div className={style.wrapper}>
             <p>{JSON.stringify(data)}</p>
-            <button> Request for a protected route</button>
-            <button>Go out</button>
+            <Button> Request for a protected route</Button>
+            <Button>Go out</Button>
         </div> 
     )
 }
