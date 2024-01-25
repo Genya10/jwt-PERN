@@ -1,6 +1,6 @@
-import { ErrorUtils,Unprocessable } from "./Errors";
+const { ErrorUtils,Unprocessable } = require("./Errors");
 
-export default async (req, res,next,schema)=>{
+module.exports= async (req, res,next,schema)=>{
     try{
         if(schema){
             await schema.validate(req);

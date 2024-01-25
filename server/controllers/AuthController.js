@@ -1,4 +1,4 @@
-import { ErrorUtils } from "../utils/Errors";
+const { ErrorUtils } = require("../utils/Errors") ;
 
 class AuthController {
    static async signIn(req,res){

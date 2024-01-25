@@ -1,7 +1,7 @@
 import ValidateRequest from "../utils/ValidateRequest";
 const yup = require("yup");
 
-export const signInSchema = yup.object({
+ const signInSchema = yup.object({
     body: yup.object({
         userName:yup.string()
         .required("Field is necessarily")
@@ -13,7 +13,7 @@ export const signInSchema = yup.object({
     }),
 });
 
-export const signUpSchema = yup.object({
+ const signUpSchema = yup.object({
     body: yup.object({
         userName:yup.string()
         .required("Field is necessarily")
@@ -30,13 +30,13 @@ export const signUpSchema = yup.object({
     }),
 });
 
-export const logoutSchema = yup.object({
+ const logoutSchema = yup.object({
     cookie:yup.object({
         refreshToken: yup.string().required("Field is necessarily!")
     }),
 });
 
-export class AuthValidator {
+ class AuthValidator {
     static async signIn(req,res,next){
         return ValidateRequest(req,res,next,signInSchema)
     }
@@ -50,3 +50,5 @@ export class AuthValidator {
         return ValidateRequest(req,res,next)
     }
 }
+
+module.exports = AuthValidator;
