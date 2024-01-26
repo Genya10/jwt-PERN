@@ -1,5 +1,5 @@
 import {memo} from "react";
-import style from "./field.module.scss";
+import style from "./Field.module.scss";
 import cn from "classnames";
 
 export default memo(
