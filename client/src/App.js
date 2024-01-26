@@ -3,10 +3,12 @@ import style from "./app.module.scss";
 import { Demo } from "./pages/Demo";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
+import {SnackbarProvider} from "notistack";
 
 function App() {
   return (
     <div className={style.wrapper}>      
+    <SnackbarProvider/>
       <BrowserRouter>
         <nav className={style.nav}>
           <Link to="sign-in">Enter</Link>
