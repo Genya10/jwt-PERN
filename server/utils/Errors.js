@@ -48,7 +48,7 @@ class Unprocessable extends Error {
     }
 }
 
-module.export={
+module.exports={
     Unprocessable,
     Conflict,
     NotFound,

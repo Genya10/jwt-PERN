@@ -20,7 +20,7 @@ const yup = require("yup");
         .min(3, "Password is too short")
         .max(50, "Maximum length - 50 symbol"),
         role: yup.number()
-        .required("Field is necessarily")
+        .required("Field is necessarily11111")
         .typeError("Value should be a number!")
         .min(1, "Minimum length - 1")
         .max(3, "Maximum length - 3 symbol"),
