@@ -5,6 +5,7 @@ const Fingerprint = require("express-fingerprint");
 const AuthRootRouter = require("./routers/AuthRouter.js");
 const TokenService = require("./services/Token")
 const cookieParser = require("cookie-parser");
+const pool = require("./db")
 
 dotenv.config();
 
@@ -14,8 +15,8 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
-
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+//app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use(
     Fingerprint({
       parameters: [Fingerprint.useragent, Fingerprint.acceptHeaders],
@@ -23,6 +24,13 @@ app.use(
   );
   
   app.use("/auth", AuthRootRouter);
+  pool.query('SELECT NOW()', (err, result) => {
+    if (err) {
+      console.error('Ошибка при тестовом запросе:', err);
+    } else {
+      console.log('Подключение к базе данных успешно. Результат тестового запроса:', result.rows);
+    }
+  });
   
   app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);

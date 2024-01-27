@@ -54,17 +54,17 @@ export function SignUp(){
                     helperText={errors.userName?.message}
             />
             <Field 
-                    name="userName"
+                    name="password"
                     register={register}
                     autoComplete="off"
                     placeholder="Password"
-                    error={Boolean(errors.userName)}
-                    helperText={errors.userName?.message}
+                    error={Boolean(errors.password)}
+                    helperText={errors.password?.message}
             />
             <Controller 
-            control={control}
-            name="role"
-            render={({field:{onChange,value}})=>(
+              control={control}
+              name="role"
+              render={({field:{onChange,value}})=>(
                <Select onChange={onChange} value={value} options={rolesList}/>
             )}                          
             />
