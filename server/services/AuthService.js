@@ -17,9 +17,23 @@ class AuthService{
         const hashedPassword = bcrypt.hashSync(password,8);
 
         const {id}=await UserRepository.createUser({
-            userName,hashedPassword,role
+            userName, hashedPassword, role
         });
         const payload = {id,userName,role};
+
+        const accessToken = await TokenService.generateAccessToken(payload);
+        const refreshToken = await TokenService.generateRefreshToken(payload);
+
+        await RefreshSessionsRepository.createRefreshSession({
+            id,
+            refreshToken,
+            fingerprint
+        });
+        return {
+            accessToken,
+            refreshToken,
+            accessTokenExpiration:ACCES_TOKEN_EXPIRATION
+        }
     }
   
     static async logOut(refreshToken) {}
