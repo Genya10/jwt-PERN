@@ -4,7 +4,7 @@ import axios from "axios";
 import config from "../config";
 
 export const AuthClient = axios.create({
-    baseURL:'http://localhost:5000/auth',
+    baseURL:`${config.API_URL}/auth`,
     withCredentials:true,
 })
 
@@ -15,21 +15,11 @@ export const AuthProvider =({children})=>{
 
     const handleFetch = ()=>{};    
     const handleSignIn =(data)=>{};
-    /*const handleSignUp =(data)=>{
+    const handleSignUp =(data)=>{
         AuthClient.post("/sign-up", data);
         console.log(data)
-    };*/
-    const handleSignUp = async (data) => {
-        try {
-          const response = await AuthClient.post("/sign-up", data);
-          console.log("handleUp sent", response.data);
-          // Продолжайте с обработкой успешного ответа, если нужно
-        } catch (error) {
-          console.error("Error during sign-up:", error.response.data.error);
-          console.error("Error response data:", error.response?.data);
-          console.error("Error status:", error.response?.status);
-        }
-      };
+    };
+
     const handleLogOut =()=>{};
 
     return(

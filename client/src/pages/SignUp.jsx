@@ -11,8 +11,8 @@ import Field from "../components/Field";
 const defaultValues ={
     userName:"",
     password:"",
-    role:1
-}
+    role: 1,
+};
 
 const rolesList = [
     {
@@ -64,7 +64,7 @@ export function SignUp(){
             <Controller 
               control={control}
               name="role"
-              render={({field:{onChange,value}})=>(
+              render={({field:{ onChange, value} })=> (
                <Select onChange={onChange} value={value} options={rolesList}/>
             )}                          
             />

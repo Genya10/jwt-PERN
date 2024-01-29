@@ -13,7 +13,7 @@ export const signInSchema = yup.object({
  export const signUpSchema = yup.object({
         userName:yup.string()
         .required("Field is necessarily")
-        .max(20,"Max length - 20 symbol"),
+        .max(25,"Max length - 25 symbol"),
         password:yup.string()
         .required("Field is necessarily")
         .min(3, "Password is too short")
