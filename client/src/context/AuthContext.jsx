@@ -2,6 +2,8 @@ import { createContext,useState } from "react";
 import style from "../app.module.scss";
 import axios from "axios";
 import config from "../config";
+import memoryJWT from "../memoryJWT/memoryJWT";
+import ShowError from "../utils/ShowError";
 
 export const AuthClient = axios.create({
     baseURL:`${config.API_URL}/auth`,
@@ -13,14 +15,22 @@ export const AuthContext = createContext({});
 export const AuthProvider =({children})=>{
     const [data,setData] = useState();
 
-    const handleFetch = ()=>{};    
-    const handleSignIn =(data)=>{};
+    const handleFetch = ()=>{};        
     const handleSignUp = (data)=>{
-          AuthClient.post("/sign-up", data);
-          console.log(data)
-             
+          AuthClient.post("/sign-up", data).then((res)=>{
+            const {accessToken, accessTokenExpiration}=res.data;
+            memoryJWT.setToken(accessToken,accessTokenExpiration)
+          })
+            .catch(ShowError);
     };
+    const handleSignIn =(data)=>{
+          AuthClient.post("/sign-in", data).then((res)=>{
+            const {accessToken, accessTokenExpiration}=res.data;
+            memoryJWT.setToken(accessToken,accessTokenExpiration)
+          })
+          .catch(ShowError);
 
+    };
     const handleLogOut =()=>{};
 
     return(
