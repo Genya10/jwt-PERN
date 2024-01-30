@@ -12,11 +12,15 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+// Обработчик GET-запроса по корневому пути
+app.get('/', (req, res) => {
+  res.send('Привет, это ваш сервер!');
+});
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-//app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
+//app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use(
     Fingerprint({
       parameters: [Fingerprint.useragent, Fingerprint.acceptHeaders],
@@ -24,14 +28,15 @@ app.use(
   );
   
   app.use("/auth", AuthRootRouter);
+
   pool.query('SELECT NOW()', (err, result) => {
     if (err) {
       console.error('Ошибка при тестовом запросе:', err);
     } else {
-      console.log('Подключение к базе данных успешно. Результат тестового запроса:', result.rows);
-    }
-  });
-  
+      console.log('Подключение к базе данных успешно. Результат тестового запроса:', result.rows);  
+  }
+});
+
   app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`);
   });

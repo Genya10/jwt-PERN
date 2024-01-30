@@ -15,9 +15,10 @@ export const AuthProvider =({children})=>{
 
     const handleFetch = ()=>{};    
     const handleSignIn =(data)=>{};
-    const handleSignUp =(data)=>{
-        AuthClient.post("/sign-up", data);
-        console.log(data)
+    const handleSignUp = (data)=>{
+          AuthClient.post("/sign-up", data);
+          console.log(data)
+             
     };
 
     const handleLogOut =()=>{};

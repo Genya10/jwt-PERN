@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const TokenService = require("./Token");
 const {NotFound,Forbidden,Conflict} = require("../utils/Errors");
 const RefreshSessionsRepository = require("../repositories/RefreshSession");
-const UserRepository = require("../constants.js");
+const UserRepository = require("../repositories/UserRepository");
 const {ACCES_TOKEN_EXPIRATION} = require("../constants.js");
 
 class AuthService{
