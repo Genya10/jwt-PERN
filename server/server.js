@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
 
 app.use(cookieParser());
 app.use(express.json());
-//app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use(
     Fingerprint({
@@ -28,6 +27,10 @@ app.use(
   );
   
   app.use("/auth", AuthRootRouter);
+
+  app.use("resourse/protected",(_,res)=>{
+    return res.status(200).json("Welcome"+ Date.now());
+  })
 
   pool.query('SELECT NOW()', (err, result) => {
     if (err) {

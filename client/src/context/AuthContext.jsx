@@ -10,18 +10,39 @@ export const AuthClient = axios.create({
     withCredentials:true,
 })
 
+const resourseClient = axios.create({
+  baseURL:`${config.API_URL}/resourse`,
+})
+
+resourseClient.interceptors.request.use((config)=>{
+  const accessToken = memoryJWT.getToken();
+  if(accessToken){
+    config.headers["Authorization"] = `Bearer ${accessToken}`;
+  }
+  return config;
+  },
+  (error)=>{
+    Promise.reject(error);
+  }
+);
+
 export const AuthContext = createContext({});
 
 export const AuthProvider =({children})=>{
     const [data,setData] = useState();
 
-    const handleFetch = ()=>{};        
+    const handleFetch = ()=>{
+      resourseClient.get("/protected").then((res)=>{
+        setData(res.data);
+      })
+      .catch(ShowError);
+    };        
     const handleSignUp = (data)=>{
           AuthClient.post("/sign-up", data).then((res)=>{
             const {accessToken, accessTokenExpiration}=res.data;
             memoryJWT.setToken(accessToken,accessTokenExpiration)
           })
-            .catch(ShowError);
+           .catch(ShowError);
     };
     const handleSignIn =(data)=>{
           AuthClient.post("/sign-in", data).then((res)=>{

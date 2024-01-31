@@ -4,7 +4,7 @@ import style from "./pages.module.scss";
 import Button from "../components/Button"
 
 export function Demo(){
-    const {data,handleFetch,handleLogOut}= useContext(AuthContext);
+    const {data, handleFetch, handleLogOut}= useContext(AuthContext);
 
     return (
         <div className={style.wrapper}>
