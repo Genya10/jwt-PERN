@@ -28,7 +28,7 @@ app.use(
   
   app.use("/auth", AuthRootRouter);
 
-  app.use("resourse/protected",(_,res)=>{
+  app.use("resource/protected",TokenService.checkAccess,(req,res)=>{
     return res.status(200).json("Welcome"+ Date.now());
   })
 

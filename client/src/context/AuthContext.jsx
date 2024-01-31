@@ -10,11 +10,11 @@ export const AuthClient = axios.create({
     withCredentials:true,
 })
 
-const resourseClient = axios.create({
-  baseURL:`${config.API_URL}/resourse`,
+const resourceClient = axios.create({
+  baseURL:`${config.API_URL}/resource`,
 })
 
-resourseClient.interceptors.request.use((config)=>{
+resourceClient.interceptors.request.use((config)=>{
   const accessToken = memoryJWT.getToken();
   if(accessToken){
     config.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -32,7 +32,7 @@ export const AuthProvider =({children})=>{
     const [data,setData] = useState();
 
     const handleFetch = ()=>{
-      resourseClient.get("/protected").then((res)=>{
+      resourceClient.get("/protected").then((res)=>{
         setData(res.data);
       })
       .catch(ShowError);
