@@ -4,12 +4,19 @@ const {COOKIE_SETTINGS} = require("../constants.js");
 
 class AuthController {
    static async signIn(req,res){
-    const {fingerprint} = req; 
-    try{
-        return res.sendStatus(200);
-    }catch(err){
+    const {userName,password} = req.body;
+    const {fingerprint} = req;
+     try {
+        const {accesToken, refreshToken,accessTokenExpiration}=
+        await AuthService.signIn({
+            userName,password,fingerprint
+        });
+        res.cookie("refreshToken", refreshToken,COOKIE_SETTINGS.REFRESH_TOKEN);
+
+        return res.status(200).json({accesToken,accessTokenExpiration});
+     }catch(err){
         return ErrorUtils.catchError(res,err);
-    }
+     }
    }
 
     static async signUp(req,res){
