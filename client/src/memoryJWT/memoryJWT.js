@@ -6,7 +6,11 @@ const memoryJWT = () => {
     const setToken =(token,tokenExpiration)=>{
         inMemoryJWT = token;
     };
-    return {getToken,setToken};
+    const deleteToken = ()=>{
+        inMemoryJWT = null;
+    }
+
+    return {getToken,setToken,deleteToken};
 }
 
 export default memoryJWT();

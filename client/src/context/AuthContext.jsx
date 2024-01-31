@@ -40,7 +40,7 @@ export const AuthProvider =({children})=>{
     const handleSignUp = (data)=>{
           AuthClient.post("/sign-up", data).then((res)=>{
             const {accessToken, accessTokenExpiration}=res.data;
-            memoryJWT.setToken(accessToken,accessTokenExpiration)
+            memoryJWT.setToken(accessToken,accessTokenExpiration)          
           })
            .catch(ShowError);
     };
@@ -52,7 +52,12 @@ export const AuthProvider =({children})=>{
           .catch(ShowError);
 
     };
-    const handleLogOut =()=>{};
+    const handleLogOut =()=>{
+      AuthClient.post("/logout").then(()=>{
+        memoryJWT.deleteToken();
+      })
+      .catch(ShowError);
+    };
 
     return(
         <AuthContext.Provider
