@@ -4,7 +4,7 @@ const TokenService = require("./Token");
 const {NotFound,Forbidden,Conflict,Unauthorized} = require("../utils/Errors");
 const RefreshSessionsRepository = require("../repositories/RefreshSession");
 const UserRepository = require("../repositories/UserRepository");
-const {ACCES_TOKEN_EXPIRATION} = require("../constants.js");
+const {ACCESS_TOKEN_EXPIRATION} = require("../constants.js");
 
 class AuthService{
     static async signIn({ userName, password, fingerprint }) {
@@ -28,7 +28,7 @@ class AuthService{
         return {
             accessToken,
             refreshToken,
-            accessTokenExpiration:ACCES_TOKEN_EXPIRATION
+            accessTokenExpiration:ACCESS_TOKEN_EXPIRATION
         }
     }
 
@@ -47,7 +47,7 @@ class AuthService{
         const accessToken = await TokenService.generateAccessToken(payload);
         const refreshToken = await TokenService.generateRefreshToken(payload);
 
-        await RefreshSessionsRepository.createRefreshSession({
+        await RefreshSessionsRepository.createRefreshSession({            
             id,
             refreshToken,
             fingerprint
@@ -55,7 +55,7 @@ class AuthService{
         return {
             accessToken,
             refreshToken,
-            accessTokenExpiration:ACCES_TOKEN_EXPIRATION
+            accessTokenExpiration:ACCESS_TOKEN_EXPIRATION
         }
     }
   

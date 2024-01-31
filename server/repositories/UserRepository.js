@@ -2,6 +2,7 @@ const pool = require("../db.js");
 
 class UserRepository {
     static async createUser({userName, hashedPassword, role}){
+
        const response = await pool.query(
         "INSERT INTO users (name, password, role) VALUES ($1, $2, $3) RETURNING *",
          [userName, hashedPassword, role]

@@ -4,5 +4,5 @@ module.exports.COOKIE_SETTINGS = {
     maxAge:1296e6,//15*24*3600*1000(15 days)
    }
 }
-module.exports.ACCES_TOKEN_EXPIRATION = 18e5;//1800 * 1000(30 min)
+module.exports.ACCESS_TOKEN_EXPIRATION = 18e5;//1800 * 1000(30 min)
 

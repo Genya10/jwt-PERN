@@ -7,13 +7,13 @@ class AuthController {
     const {userName,password} = req.body;
     const {fingerprint} = req;
      try {
-        const {accesToken, refreshToken,accessTokenExpiration}=
+        const {accessToken, refreshToken,accessTokenExpiration}=
         await AuthService.signIn({
             userName,password,fingerprint
         });
         res.cookie("refreshToken", refreshToken,COOKIE_SETTINGS.REFRESH_TOKEN);
 
-        return res.status(200).json({accesToken,accessTokenExpiration});
+        return res.status(200).json({accessToken,accessTokenExpiration});
      }catch(err){
         return ErrorUtils.catchError(res,err);
      }
@@ -23,13 +23,13 @@ class AuthController {
     const {userName,password,role} = req.body;
     const {fingerprint} = req;
      try {
-        const {accesToken, refreshToken,accessTokenExpiration}=
+        const {accessToken, refreshToken,accessTokenExpiration}=
         await AuthService.signUp({
             userName,password,role,fingerprint
         });
         res.cookie("refreshToken", refreshToken,COOKIE_SETTINGS.REFRESH_TOKEN);
 
-        return res.status(200).json({accesToken,accessTokenExpiration});
+        return res.status(200).json({accessToken,accessTokenExpiration});
      }catch(err){
         return ErrorUtils.catchError(res,err);
      }
